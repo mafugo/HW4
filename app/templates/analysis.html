@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Todo App Analysis</title>
+</head>
+<body>
+    <div class="container" style="margin-top: 100px">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Todo App Analysis</h3>
+        </div>
+        <div>
+            <form class="form-inline justify-content-end" action="{{ url_for('logout') }}" method="POST">
+                <a href="{{ url_for('tasks') }}" class="btn btn-danger mr-2">Main</a>
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <tr>
+                <th colspan="2" style="text-align: center;">First Question: Title-Latency(in seconds)</th>
+            </tr>
+            <th scope="col">Title</th>
+            <th scope="col">Latency(in seconds)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in firsts %}
+        {% if task is defined and task %}
+            <tr style="background-color:lightcoral">
+                <td>{{ task.title }}</td>
+                <td>{{ task.latency }}</td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <tr>
+                <th colspan="1" style="text-align: center;">Second Question: Average Completion Time(in seconds)</th>
+            </tr>
+            <th scope="col">Average Completion time(in seconds)</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% if second is defined and second and second.avg_completion_time is not none %}
+            <tr style="background-color:aquamarine">
+              <td>{{ '%0.1f' % second.avg_completion_time }}</td>
+            </tr>
+          {% endif %}
+          
+            </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <tr>
+                <th colspan="2" style="text-align: center;">Third Question: Count of Completed Tasks</th>
+            </tr>
+            <th scope="col">Task Type</th>
+            <th scope="col">Count</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for task in thirds %}
+            {% if task is defined and task %}
+            <tr style="background-color:lightcoral">
+                <td>{{ task.task_type }}</td>
+                <td>{{ task.num_completed }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+    </table>
+    <table class="table">
+        <thead>
+        <tr>
+            <tr>
+                <th colspan="2" style="text-align: center;">Fourth Question: Title and Deadline of Uncompleted Tasks</th>
+            </tr>
+            <th scope="col">Title</th>
+            <th scope="col">Deadline</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for task in fourths %}
+            {% if task is defined and task %}
+            <tr style="background-color:aquamarine">
+                <td>{{ task.title }}</td>
+                <td>{{ task.deadline }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
+</body>
+</html>
+
