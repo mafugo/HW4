@@ -104,6 +104,28 @@
             {% endfor %}
             </tbody>
     </table>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <tr>
+                <th colspan="2" style="text-align: center;">Fifth Question: Title and Completion Time</th>
+            </tr>
+            <th scope="col">Title</th>
+            <th scope="col">Completion Time</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for task in fifths %}
+            {% if task is defined and task %}
+            <tr style="background-color: lightcoral">
+                <td>{{ task.title }}</td>
+                <td>{{ task.completion_time }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+    </table>
 </div>
 </body>
 </html>
